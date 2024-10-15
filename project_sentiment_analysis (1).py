@@ -12,7 +12,7 @@ NLP Sentiment and classification analysis:
 import pandas as pd
 
 # Load the dataset
-df = pd.read_csv('/content/amazon_reviews.csv')
+df = pd.read_csv('amazon_reviews.csv')
 
 # View the first few rows
 print(df.head())
