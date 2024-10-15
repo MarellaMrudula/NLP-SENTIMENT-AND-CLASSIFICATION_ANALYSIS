@@ -676,3 +676,35 @@ Evaluation: Tuning has improved the precision..
 
 Overall SVM has got the highest accuracy..
 """
+
+import streamlit as st
+import pickle
+import nltk
+from nltk.tokenize import word_tokenize
+import numpy as np
+
+# Download punkt if not already available
+nltk.download('punkt')
+
+# Load the saved model
+model = pickle.load(open('svm_sentiment_model.pkl', 'rb'))
+
+# Title of the app
+st.title("Sentiment Analysis App")
+
+# Input from the user
+user_input = st.text_area("Enter your text here:")
+
+if st.button("Predict"):
+    # Tokenize input text
+    tokenized_input = word_tokenize(user_input)
+    
+    # You can also preprocess it here before passing to your model
+    # Example: vectorized_input = your_vectorization_function(tokenized_input)
+    
+    # Make prediction
+    prediction = model.predict([user_input])  # Adjust as necessary for your input format
+    sentiment = prediction[0]
+
+    st.write(f"Predicted Sentiment: {sentiment}")
+
